@@ -1,0 +1,56 @@
+import random
+import time
+
+def main_function():
+  lower_number = 1
+  upper_number = 100
+  hidden_number = random.randint(lower_number, upper_number)
+  
+  guess_times = 0
+  while True:
+    user = int(input("請輸入一個數字: "))
+    guess_times += 1
+    #玩家所猜的次數
+    if guess_times == 8 and user != hidden_number:
+      print("你已經猜了", guess_times, "次，你沒有猜中，你輸了，這個數字是",hidden_number,"，遊戲結束!")
+      break
+    
+    #情況1:玩家所輸入的數字與隱藏數字相同
+    if user == hidden_number: 
+      print("你猜中了，這個數字是", hidden_number, "你共猜了", guess_times, "次")
+      break
+    else:
+      #情況2:玩家所輸入的數字小於隱藏數字
+      if user < hidden_number:
+        lower_number = user
+        print("loading...")
+        time.sleep(1)
+        print("該數字介於", lower_number, '和', upper_number)
+        print("----------------------")
+      #情況3:玩家所輸入的數字大於隱藏數字
+      else:
+        upper_number = user
+        print("loading...")
+        time.sleep(1)
+        print("該數字介於", lower_number, '和', upper_number)
+        print("----------------------")
+  
+  
+  
+
+
+print("現時我會從1~100中任意抽出一個數字，你可以來猜猜看！", "(你只有8次機會去猜這個數字)")
+start = str(input("按enter以開始遊戲:"))
+main_function()
+
+
+play_game = True
+while play_game == True:
+  print("=======================================")
+  user_input = input("重新進行遊戲？請輸入y開始、輸入n結束：")
+  if user_input == "y":
+    main_function()
+    
+  else:
+    play_game = False
+    print("~bye~")
